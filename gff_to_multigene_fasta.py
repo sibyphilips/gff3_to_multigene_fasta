@@ -106,7 +106,7 @@ def get_gene_cords(gff_file, fasta_file):
 						genes.write(fasta_line+'\n'+sequence[left_cord:right_cord]+'\n')
 						genes.close()
 				b = b+1
-	for file in os.listdir("."): #prepare a new final fasta file without the square brackets as above
+	for file in os.listdir("."): #prepare a new final fasta file without the square brackets as above, this part seems not to be working check!
 		if file.endswith("_multigene.fasta"):
 			#print file
 			fl = file
