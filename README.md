@@ -8,6 +8,11 @@ Please open the file to see the code.
 
 provide input when prompted.
 
-usage
+_PS: It creates a lot of junk files in the folder where you work from, please delete them since they are of no use probably._
+
+**Usage**
 >python /path/to/where/the/script/is/stored/gtt_to_multigene_fasta.py
+
+input your fasta file name: eg. **trial.fasta**
+Resultant file with multigenes will be - trial_multigene.fasta (or ***_multigene.fasta**).
 
