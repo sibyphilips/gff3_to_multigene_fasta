@@ -5,7 +5,7 @@ import re
 from Bio import SeqIO
 import os
 
-file_in = raw_input('\n\n please give the name of the NCBI mitogenome fasta file: ')
+file_in = input('\n\n please give the name of the NCBI mitogenome fasta file: ')
 for file in os.listdir("."):
 	if file.endswith("gff3"):
 		gff_f = file
@@ -23,12 +23,12 @@ alt_map = {'ins':'0'}
 complement = {'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'} 
 
 def reverse_complement(seq):    
-    for k,v in alt_map.iteritems():
+    for k,v in alt_map.items():#python3 renamed dict.iteritems to dict.items
         seq = seq.replace(k,v)
     bases = list(seq) 
     bases = reversed([complement.get(base,base) for base in bases])
     bases = ''.join(bases)
-    for k,v in alt_map.iteritems():
+    for k,v in alt_map.items():
         bases = bases.replace(v,k)
     return bases
 
@@ -40,8 +40,8 @@ def get_gene_cords(gff_file, fasta_file):
 	gene_names = []
 	polarity = []
 	with open(gff_fl) as g:
-    		rd = csv.reader(g, delimiter="\t", quotechar='"')
-    		for row in rd:
+		rd = csv.reader(g, delimiter="\t", quotechar='"')
+		for row in rd:
 			if len(row) < 1:
 				continue
 			elif len(row) > 1:
@@ -50,8 +50,8 @@ def get_gene_cords(gff_file, fasta_file):
 					gene_r.append(row[4])
 					polarity.append(row[6])
 					gene_n.append(row[8])
-    		for item in gene_n:
-    			g_n = re.findall("gene\-(.*?)\;", item)
+		for item in gene_n:
+			g_n = re.findall("gene\-(.*?)\;", item)
 			gene_names.append(g_n)
 	rows = zip(gene_l,gene_r,gene_names,polarity)
 
@@ -73,9 +73,9 @@ def get_gene_cords(gff_file, fasta_file):
 			seq_only_file.write(line) #write the sequence only in a new file to read in the next step
 			seq_only_file.close()
 	
-	with open('cds_table.csv', 'rb') as f:
-    		reader = csv.reader(f)
-    		for row in reader:
+	with open('cds_table.csv', 'r') as f:
+		reader = csv.reader(f)
+		for row in reader:
 			left=[]
 			left.append(row[0])
 			right=[]
